@@ -6,4 +6,9 @@ public interface CourseRepository {
 	
 	public Course findById(Long id);
 	
+	public void deleteById(Long id);
+	
+	public void save(Course course);
+	
+	public void update(Course course);
 }

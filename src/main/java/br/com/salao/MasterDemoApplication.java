@@ -8,14 +8,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import br.com.salao.entity.Course;
-import br.com.salao.repository.CourseRepository;
+import br.com.salao.repository.CourseRepositoryImpl;
 
 @SpringBootApplication
 public class MasterDemoApplication implements CommandLineRunner{
 
 	@Autowired 
-	private CourseRepository courseRepository;
+	private CourseRepositoryImpl courseRepository;
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
@@ -24,9 +23,9 @@ public class MasterDemoApplication implements CommandLineRunner{
 	}
 	
 	public void run( String... args ) {
-		//logger.info( "Course -> {}", courseRepository.findById(10001L) );
-		
+		//logger.info( "Course -> {}", courseRepository.findById(10001L) );		
 		//courseRepository.save(new Course("Curso de Integração de Posses"));
+		courseRepository.playWithEntityManager();
 				 
 	}
 

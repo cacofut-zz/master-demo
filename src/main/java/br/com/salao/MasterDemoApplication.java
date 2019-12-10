@@ -25,7 +25,7 @@ public class MasterDemoApplication implements CommandLineRunner{
 	public void run( String... args ) {
 		//logger.info( "Course -> {}", courseRepository.findById(10001L) );		
 		//courseRepository.save(new Course("Curso de Integração de Posses"));
-		courseRepository.playWithEntityManager();
+		//courseRepository.playWithEntityManager();
 				 
 	}
 

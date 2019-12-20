@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.salao.entity.Course;
+import br.com.salao.entity.Review;
 
 @Repository
 @Transactional
@@ -62,5 +63,22 @@ public class CourseRepositoryImpl implements CourseRepository{
 		
 	}
 
+	/**
+	 * 
+	 */
+	public void addReviews() {
+		Course course = findById(10003L);
+		
+		Review r1 = new Review("The is OK", "3");
+		Review r2 = new Review("The is awful", "1");
+		
+		r1.setCourse(course);
+		r2.setCourse(course);
+		
+		emt.persist(r1);
+		emt.persist(r2);
+		
+		
+	}
 	
 }

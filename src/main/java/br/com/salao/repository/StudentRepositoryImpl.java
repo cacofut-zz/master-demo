@@ -6,6 +6,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.salao.entity.Course;
 import br.com.salao.entity.Passport;
 import br.com.salao.entity.Student;
 
@@ -44,6 +45,22 @@ public class StudentRepositoryImpl implements StudentRepository{
 		
 		Student student = new Student("Novo student", passport);
 		emt.persist(student);
+	}
+	
+	public void insertStudentWithCourse() {
+		Passport passport1 = new Passport("GHJFJ123");
+		emt.persist(passport1);
+		
+		Student student1 = new Student("Rafael Julio Carneiro");
+		Course course1   = new Course("Estratégias de Marketing"); 
+		
+		emt.persist(student1);
+		emt.persist(course1);
+		
+		passport1.setStudent(student1);
+		student1.setPassport(passport1);
+					
+		emt.persist(student1);
 	}
 
 }

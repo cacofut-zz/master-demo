@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -44,7 +45,10 @@ public class Course{
 	private LocalDateTime lastUpdatedDate;
 	
 	@OneToMany(mappedBy = "course")
-	private List<Review> reviews = new ArrayList<Review>();
+	private List<Review> reviews = new ArrayList<>();
+	
+	@ManyToMany(mappedBy = "courses")
+	private List<Student> students = new ArrayList<>();
 		
 	public Course(String name) {
 		this.name = name;

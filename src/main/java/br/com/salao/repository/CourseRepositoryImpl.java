@@ -1,5 +1,7 @@
 package br.com.salao.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -46,7 +48,7 @@ public class CourseRepositoryImpl implements CourseRepository{
 		
 		emt.flush(); // realiza as alterações imediatamente
 		
-		//emt.clear(); // destaca o objeto do entitymanager e não e não é mais gerenciado por ele
+		//emt.clear(); // destaca o objeto do entitymanager e não é mais gerenciado por ele
 				
 		//course1.setName("Teste de Implantação - update");
 		try {
@@ -68,17 +70,34 @@ public class CourseRepositoryImpl implements CourseRepository{
 	 */
 	public void addReviews() {
 		Course course = findById(10003L);
-		
+			
 		Review r1 = new Review("The is OK", "3");
 		Review r2 = new Review("The is awful", "1");
 		
 		r1.setCourse(course);
 		r2.setCourse(course);
 		
+		course.addReview(r1);
+		course.addReview(r2);
+		
 		emt.persist(r1);
 		emt.persist(r2);
 		
 		
+	}
+	
+	/**
+	 * 
+	 * @param courseId
+	 * @param reviews
+	 */
+	public void addReviewToCourse(Long courseId, List<Review> reviews) {
+		Course course = findById(courseId);
+		for (Review review : reviews) {
+			course.addReview(review);
+			review.setCourse(course);
+			emt.persist(review);
+		}
 	}
 	
 }
